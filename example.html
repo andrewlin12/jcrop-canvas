@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script src="jquery.Jcrop.min.js"></script>
+    <script src="jquery.jcrop-canvas.js"></script>
+    <style>
+      .cropper {
+        overflow: hidden;
+      }
+
+      .cropper .file-input {
+        margin-bottom: 8px;
+        text-align: center;
+      }
+
+      .cropper .help {
+        background: #ccc;
+        border: dashed 4px #444;
+        border-radius: 8px;
+        padding: 50px 0;
+        text-align: center;
+      }
+
+      .cropper .preview-container {
+        display: none;
+        margin-top: 8px;
+        overflow:hidden;
+      }
+
+      .cropper .rotate {
+        display: none;
+      }
+
+      .cropper .source {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id='cropContainer'>
+      <div class="cropper">
+        <div class="file-input"><input type="file" /></div>
+        <div class="help">Drag and drop an image to begin cropping</div>
+        <img class="source" />
+        <div><a class="rotate" href="javascript:void(0)">rotate</a></div>
+        <div class="preview-container"></div>
+      </div>
+    </div>
+    <button>Crop It</button>
+    <script>
+    var cropContainer = $('#cropContainer');
+    cropContainer.jcropCanvas({
+      sourceImage: '#cropContainer source',
+      previewContainer: '#cropContainer preview-container',
+      width: 200,
+      height: 150
+    }).load(function() {
+      $('#cropContainer .help').hide();
+      $('#cropContainer a.rotate').show();
+    }).error(alert);
+
+    cropContainer.find('a.rotate').click(function() {
+      cropContainer.jcropCanvas('rotate');
+    });
+
+    $('button').click(function(e) {
+      alert(cropContainer.jcropCanvas('createCrop'));
+    });
+    </script>
+  </body>
+</html>
