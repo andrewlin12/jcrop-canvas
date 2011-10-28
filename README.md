@@ -1,18 +1,18 @@
 jcrop-canvas
 ============
 Integrates the jQuery Jcrop plugin with an HTML5 canvas so you can do
-client-side cropping.
+client-side cropping.  Also supports drag and drop of files.
 
 Prerequisites
 =============
-jQuery
-Jcrop (https://github.com/tapmodo/Jcrop)
+ - jQuery
+ - Jcrop (https://github.com/tapmodo/Jcrop)
 
 Browser Support
 ===============
-Chrome 8+
-FF 4+
-Safari nightly-builds (needs window.URL.createObjectURL)
+ - Chrome 8+
+ - FF 4+
+ - Safari nightly-builds (needs window.URL.createObjectURL)
 
 Options
 =======
