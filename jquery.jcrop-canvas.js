@@ -62,7 +62,7 @@
       self.loadImage = function(file) {
         if (!window.URL) {
           self.trigger('error',
-            'Please use Chrome 10+, Safari 4+, or FF 4+ to use the image cropper.');
+            'Please use Chrome 10+ or FF 4+ to use the image cropper.');
           return;
         }
 
