@@ -57,7 +57,9 @@
     }).load(function() {
       $('#cropContainer .help').hide();
       $('#cropContainer a.rotate').show();
-    }).error(alert);
+    }).bind('error.jcrop-canvas', function(err) {
+      alert('Please use Chrome 10+ or FF 4+ to crop images');
+    });
 
     cropContainer.find('a.rotate').click(function() {
       cropContainer.jcropCanvas('rotate');

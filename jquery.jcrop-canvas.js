@@ -61,8 +61,9 @@
 
       self.loadImage = function(file) {
         if (!window.URL) {
-          self.trigger('error',
-            'Please use Chrome 10+ or FF 4+ to use the image cropper.');
+          self.trigger('error.jcrop-canvas', 
+            'Please use Chrome 10+ or FF 4+ to ' +
+            'use the image cropper.');
           return;
         }
 
