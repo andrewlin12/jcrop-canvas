@@ -1,29 +1,21 @@
 (function($) {
   window.URL = window.webkitURL || window.URL;
 
-  // From http://stackoverflow.com/questions/4998908/convert-data-uri-to-file-then-append-to-formdata
-  function dataURItoBlob(dataURI, callback) {
-    var BlobBuilder = window.WebKitBlobBuilder || window.MozBlobBuilder;
+    // From http://stackoverflow.com/questions/4998908/convert-data-uri-to-file-then-append-to-formdata
+    function dataURItoBlob(dataURI, callback) {
 
-    // convert base64 to raw binary data held in a string
-    // doesn't handle URLEncoded DataURIs
-    var byteString = atob(dataURI.split(',')[1]);
+        // separate out the mime component
+        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+        var binary = atob(dataURI.split(',')[1]);
+        // separate out the mime component
+        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+        var array = [];
+        for(var i = 0; i < binary.length; i++) {
+            array.push(binary.charCodeAt(i));
+        }
+        return new Blob([new Uint8Array(array)], {type: mimeString});
 
-    // separate out the mime component
-    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-
-    // write the bytes of the string to an ArrayBuffer
-    var ab = new ArrayBuffer(byteString.length);
-    var ia = new Uint8Array(ab);
-    for (var i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
     }
-
-    // write the ArrayBuffer to a blob, and you're done
-    var bb = new BlobBuilder();
-    bb.append(ab);
-    return bb.getBlob(mimeString);
-  }
 
   var methods = {
     init: function(options) {
